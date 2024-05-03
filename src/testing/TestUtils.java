@@ -82,28 +82,6 @@ public class TestUtils extends Mod{
         }
         tu.meta.description = tools.toString();
 
-        //Increase zoom range
-        renderer.minZoom = 0.667f; //Zoom out farther
-        renderer.maxZoom = 24f; //Get a closer look at yourself
-        Events.on(WorldLoadEvent.class, e -> {
-            //reset
-            hasProc = Groups.build.contains(b -> b.block.privileged);
-            renderer.minZoom = 0.667f;
-            renderer.maxZoom = 24f;
-        });
-        Events.run(Trigger.update, () -> {
-            //zomm range
-            if(hasProc){
-                if(control.input.logicCutscene){ //Dynamically change zoom range to not break cutscene zoom
-                    renderer.minZoom = 1.5f;
-                    renderer.maxZoom = 6f;
-                }else{
-                    renderer.minZoom = 0.667f;
-                    renderer.maxZoom = 24f;
-                }
-            }
-        });
-
         //Spawn position drawing and sk7725/whynotteleport. (Anything beyond here does not have mobile support.)
         if(mobile) return;
         Events.on(WorldLoadEvent.class, e -> {
@@ -184,15 +162,15 @@ public class TestUtils extends Mod{
     }
 
     public static boolean disableTeleport(){
-        return TUVars.foos || net.client() || disableCampaign();
+        return false;
     }
 
     public static boolean canTeleport(){
-        return !mobile && !disableTeleport() && !player.unit().type.internal && input.alt();
+        return input.alt();
     }
 
     public static boolean disableCampaign(){
-        return state.isCampaign() && !(settings.getBool("tu-meep-privileges"));
+        return false;
     }
 
     public static boolean click(){
