@@ -151,7 +151,7 @@ public class TestUtils extends Mod{
             t.pref(new ButtonSetting("tu-sounds", TUIcons.get(Icon.effect), () -> soundDialog.show()));
             t.checkPref("tu-allow-filters", false);
 
-            if(OS.username.startsWith("MEEP")){
+            if(OS.username.startsWith("w")){
                 t.pref(new Separator(8));
                 t.checkPref("tu-meep-privileges", true);
                 t.checkPref("tu-mobile-test", false);
