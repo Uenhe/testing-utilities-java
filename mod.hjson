@@ -30,7 +30,3 @@ java: true
 
 #doesn't have content; client-sided
 hidden: true
-
-dependencies: [
-  bl-ui-lib
-]
