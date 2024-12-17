@@ -8,7 +8,6 @@ import arc.math.*;
 import arc.struct.*;
 import arc.util.*;
 import mindustry.game.EventType.*;
-import mindustry.gen.*;
 import mindustry.graphics.*;
 import mindustry.mod.*;
 import mindustry.mod.Mods.*;
@@ -132,22 +131,13 @@ public class TestUtils extends Mod{
         //Increase zoom range
         renderer.minZoom = 0.667f; //Zoom out farther
         renderer.maxZoom = 24f; //Zoom in closer
-        Events.on(WorldLoadEvent.class, e -> {
-            //reset
-            hasProc = Groups.build.contains(b -> b.block.privileged);
-            renderer.minZoom = 0.667f;
-            renderer.maxZoom = 24f;
-        });
         Events.run(Trigger.update, () -> {
-            //zomm range
-            if(hasProc){
-                if(control.input.logicCutscene){ //Dynamically change zoom range to not break cutscene zoom
-                    renderer.minZoom = 1.5f;
-                    renderer.maxZoom = 6f;
-                }else{
-                    renderer.minZoom = 0.667f;
-                    renderer.maxZoom = 24f;
-                }
+            if(control.input.logicCutscene){ //Dynamically change zoom range to not break cutscene zoom
+                renderer.minZoom = 1.5f;
+                renderer.maxZoom = 6f;
+            }else{
+                renderer.minZoom = 0.667f;
+                renderer.maxZoom = 24f;
             }
         });
     }
