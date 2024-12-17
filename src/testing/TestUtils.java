@@ -132,12 +132,14 @@ public class TestUtils extends Mod{
         renderer.minZoom = 0.667f; //Zoom out farther
         renderer.maxZoom = 24f; //Zoom in closer
         Events.run(Trigger.update, () -> {
-            if(control.input.logicCutscene){ //Dynamically change zoom range to not break cutscene zoom
-                renderer.minZoom = 1.5f;
-                renderer.maxZoom = 6f;
-            }else{
-                renderer.minZoom = 0.667f;
-                renderer.maxZoom = 24f;
+            if(state.isGame()){
+                if(control.input.logicCutscene){ //Dynamically change zoom range to not break cutscene zoom
+                    renderer.minZoom = 1.5f;
+                    renderer.maxZoom = 6f;
+                }else{
+                    renderer.minZoom = 0.667f;
+                    renderer.maxZoom = 24f;
+                }
             }
         });
     }
