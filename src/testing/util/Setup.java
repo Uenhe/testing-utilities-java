@@ -53,7 +53,7 @@ public class Setup{
                 table.row();
                 table.add(yoinkTimeSlider());
             }
-        }, () -> !net.client() && !TestUtils.disableCampaign());
+        }, () -> true);
 
         BLSetup.addTable(table -> {
             if(timeControlEnabled()){
@@ -61,7 +61,7 @@ public class Setup{
             }
 
             table.table(Tex.pane, Death::seppuku);
-        }, () -> !net.client() && state.isCampaign() && TestUtils.disableCampaign());
+        }, () -> true);
 
         Table miniPos = ui.hudGroup.find("minimap/position");
         Label pos = miniPos.find("position");
