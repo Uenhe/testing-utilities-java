@@ -62,7 +62,9 @@ public class Setup{
 
             table.table(Tex.pane, Death::seppuku);
         }, () -> !net.client() && state.isCampaign() && TestUtils.disableCampaign());
-/*
+
+        arc.util.Time.runTask(300.0f, () -> {
+        
         Table miniPos = ui.hudGroup.find("minimap/position");
         Label pos = miniPos.find("position");
         pos.setText(() -> {
@@ -107,15 +109,16 @@ public class Setup{
         });
         miniPos.getCell(miniPos.find("minimap")).top().right();
         miniPos.getCell(pos).top().right();
-*/
+
         terrainFrag = new TerrainPainterFragment();
         Core.app.post(() -> terrainFrag.build(ui.hudGroup)); //Wait for BLUI to set up.
-/*
+
         Events.on(WorldLoadEvent.class, e -> {
             if(posLabelAligned) return;
             pos.setAlignment(Align.right, Align.right);
             posLabelAligned = true;
-        });*/
+        });
+        });
     }
 
     private static Table yoinkTimeSlider(){
