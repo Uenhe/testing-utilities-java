@@ -111,7 +111,7 @@ public class Setup{
         miniPos.getCell(pos).top().right();
 
         terrainFrag = new TerrainPainterFragment();
-        Core.app.post(() -> terrainFrag.build(ui.hudGroup)); //Wait for BLUI to set up.
+        arc.util.Time.runTask(300.0f, () -> terrainFrag.build(ui.hudGroup)); //Wait for BLUI to set up.
 
         Events.on(WorldLoadEvent.class, e -> {
             if(posLabelAligned) return;
