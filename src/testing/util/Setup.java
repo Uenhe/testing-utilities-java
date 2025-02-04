@@ -60,7 +60,7 @@ public class Setup{
             table.table(Tex.pane, Death::seppuku);
         }, () -> true);
 
-        var pos = ui.hudGroup.find("minimap/position").find("position");
+        Label pos = ((Table)ui.hudGroup.find("minimap/position")).find("position");
         pos.setText(() -> {
             String playerPos = "";
             if(settings.getBool("position")){
