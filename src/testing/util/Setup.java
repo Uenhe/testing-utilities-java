@@ -61,7 +61,7 @@ public class Setup{
         }, () -> true);
 
         Table miniPos = ui.hudGroup.find("minimap/position");
-        Label pos = arc.util.Reflect.invoke(miniPos, "find", new String[]{"position"});
+        Label pos = arc.util.Reflect.invoke(miniPos, "find", new String[]{"position"}, String.class);
 
         pos.setText(() -> {
             String playerPos = "";
