@@ -36,14 +36,12 @@ public class Setup{
                 Spawn.addButtons(t);
                 Environment.worldButton(t);
                 Effect.statusButton(t);
-                Sandbox.addButtons(t);
             });
             table.row();
 
             boolean timeControl = timeControlEnabled();
 
             table.table(timeControl ? Tex.buttonEdge3 : Tex.pane, t -> {
-                TeamChanger.addButton(t);
                 Health.addButtons(t);
                 Death.addButtons(t);
                 LightSwitch.lightButton(t);
