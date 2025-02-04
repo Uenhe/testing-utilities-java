@@ -60,10 +60,9 @@ public class Setup{
             table.table(Tex.pane, Death::seppuku);
         }, () -> true);
 
-        Core.app.post(() -> {
-        
         Table miniPos = ui.hudGroup.find("minimap/position");
-        Label pos = miniPos.find("position");
+        Label pos = arc.util.Reflect.invoke(miniPos, "find", new String[]{"position"});
+
         pos.setText(() -> {
             String playerPos = "";
             if(settings.getBool("position")){
@@ -114,7 +113,6 @@ public class Setup{
             if(posLabelAligned) return;
             pos.setAlignment(Align.right, Align.right);
             posLabelAligned = true;
-        });
         });
     }
 
