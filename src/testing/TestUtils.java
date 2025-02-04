@@ -68,8 +68,6 @@ public class TestUtils extends Mod{
         }
         tu.meta.description = tools.toString();
 
-        setupZoom();
-
         //Spawn position drawing and sk7725/whynotteleport. (Anything beyond here does not have mobile support.)
         if(mobile) return;
         Events.on(WorldLoadEvent.class, e -> {
@@ -122,38 +120,16 @@ public class TestUtils extends Mod{
         });
     }
 
-    private static void setupZoom(){
-        if(settings.getBool("tu-disable-zoom", false)){
-            settings.put("tu-disable-zoom", false);
-            return;
-        }
-
-        //Increase zoom range
-        renderer.minZoom = 0.667f; //Zoom out farther
-        renderer.maxZoom = 24f; //Zoom in closer
-        Events.run(Trigger.update, () -> {
-            if(state.isGame()){
-                if(control.input.logicCutscene){ //Dynamically change zoom range to not break cutscene zoom
-                    renderer.minZoom = 1.5f;
-                    renderer.maxZoom = 6f;
-                }else{
-                    renderer.minZoom = 0.667f;
-                    renderer.maxZoom = 24f;
-                }
-            }
-        });
-    }
-
     public static boolean disableTeleport(){
-        return TUVars.foos || net.client() || disableCampaign();
+        return false;
     }
 
     public static boolean canTeleport(){
-        return !mobile && !disableTeleport() && !player.unit().type.internal && input.alt();
+        return true;
     }
 
     public static boolean disableCampaign(){
-        return state.isCampaign() && !(settings.getBool("tu-cheating"));
+        return true;
     }
 
     public static boolean click(){
