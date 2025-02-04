@@ -64,7 +64,7 @@ public class Setup{
         }, () -> true);
 
         Table miniPos = ui.hudGroup.find("minimap/position");
-        Label pos = miniPos.find("position");
+        Label pos = (Label)miniPos.find("position");
         pos.setText(() -> {
             String playerPos = "";
             if(settings.getBool("position")){
