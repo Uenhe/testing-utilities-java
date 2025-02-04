@@ -53,17 +53,14 @@ public class Setup{
                 table.row();
                 table.add(yoinkTimeSlider());
             }
-        }, () -> !net.client() && !TestUtils.disableCampaign());
+        }, () -> true;
 
         BLSetup.addTable(table -> {
-            if(timeControlEnabled()){
-                table.add(yoinkTimeSlider());
-            }
-
+            if(timeControlEnabled()) table.add(yoinkTimeSlider());
             table.table(Tex.pane, Death::seppuku);
-        }, () -> !net.client() && state.isCampaign() && TestUtils.disableCampaign());
+        }, () -> true);
 
-        arc.util.Time.runTask(300.0f, () -> {
+        Core.app.post(() -> {
         
         Table miniPos = ui.hudGroup.find("minimap/position");
         Label pos = miniPos.find("position");
@@ -111,7 +108,7 @@ public class Setup{
         miniPos.getCell(pos).top().right();
 
         terrainFrag = new TerrainPainterFragment();
-        arc.util.Time.runTask(300.0f, () -> terrainFrag.build(ui.hudGroup)); //Wait for BLUI to set up.
+        Core.app.post(() -> terrainFrag.build(ui.hudGroup)); //Wait for BLUI to set up.
 
         Events.on(WorldLoadEvent.class, e -> {
             if(posLabelAligned) return;
