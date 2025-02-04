@@ -60,9 +60,7 @@ public class Setup{
             table.table(Tex.pane, Death::seppuku);
         }, () -> true);
 
-        Table miniPos = ui.hudGroup.find("minimap/position");
-        Label pos = arc.util.Reflect.invoke(arc.scene.Group.class, miniPos, "find", new String[]{"position"}, String.class);
-
+        var pos = ui.hudGroup.find("minimap/position").find("position");
         pos.setText(() -> {
             String playerPos = "";
             if(settings.getBool("position")){
@@ -103,8 +101,6 @@ public class Setup{
 
             return playerPos + cursorPos;
         });
-        miniPos.getCell(miniPos.find("minimap")).top().right();
-        miniPos.getCell(pos).top().right();
 
         terrainFrag = new TerrainPainterFragment();
         Core.app.post(() -> terrainFrag.build(ui.hudGroup)); //Wait for BLUI to set up.
