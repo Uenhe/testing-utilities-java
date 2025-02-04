@@ -53,7 +53,7 @@ public class Setup{
                 table.row();
                 table.add(yoinkTimeSlider());
             }
-        }, () -> true;
+        }, () -> true);
 
         BLSetup.addTable(table -> {
             if(timeControlEnabled()) table.add(yoinkTimeSlider());
